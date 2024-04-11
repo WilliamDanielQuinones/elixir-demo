@@ -11,11 +11,29 @@ defmodule UrlShortenerWeb.SlugController do
     render(conn, "index.json", slugs: slugs)
   end
 
+  # Validate the URL and create a new slug. If url already exists, return that slug
   def create(conn, %{"slug" => slug_params}) do
-    with {:ok, %Slug{} = slug} <- Api.create_slug(slug_params) do
+    {isValid, _validMessage} = UrlShortener.Utils.UrlValidator.valid_url(slug_params["url"])
+    IO.inspect(isValid)
+    if isValid == :ok do
+      exists = Api.get_slug_by_url!(slug_params["url"])
+      if exists == :nil do
+        slug = String.downcase(UrlShortener.Utils.StringGenerator.generate_string())
+        payload = %{:url => slug_params["url"], visited: 0, slug: slug}
+        with {:ok, %Slug{} = slug} <- Api.create_slug(payload) do
+          conn
+          |> put_status(:created)
+          |> render("show.json", slug: slug)
+        end
+      else
+        conn
+        |> put_status(:created)
+        |> render("show.json", slug: exists)
+      end
+    else
       conn
-      |> put_status(:created)
-      |> render("show.json", slug: slug)
+      |> put_status(400)
+      |> render(UrlShortenerWeb.ApiErrors, "400.json", %{message: "Invalid URL: Must have https:// protocol and valid url structure."})
     end
   end
 
