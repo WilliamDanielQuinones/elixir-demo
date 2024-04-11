@@ -41,3 +41,8 @@ Run application:
 In your terminal: `cd` into the `/url_shortener` directory and run the following command:
 -- `mix phx.server`
 The application backend will be running on http://localhost:8080
+
+Run unit tests:
+Make sure that the docker container from the setup instuctions is running.
+In your terminal: `cd` into the `/url_shortener` directory and run the following command:
+-- `mix test`
