@@ -15,7 +15,6 @@ defmodule UrlShortenerWeb.SlugController do
     with {:ok, %Slug{} = slug} <- Api.create_slug(slug_params) do
       conn
       |> put_status(:created)
-      |> put_resp_header("location", Routes.slug_path(conn, :show, slug))
       |> render("show.json", slug: slug)
     end
   end

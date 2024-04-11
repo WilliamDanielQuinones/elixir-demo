@@ -1,16 +1,28 @@
 defmodule UrlShortenerWeb.FallbackController do
-  @moduledoc """
-  Translates controller action results into valid `Plug.Conn` responses.
-
-  See `Phoenix.Controller.action_fallback/1` for more details.
-  """
   use UrlShortenerWeb, :controller
 
-  # This clause is an example of how to handle resources that cannot be found.
-  def call(conn, {:error, :not_found}) do
+  def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
+    IO.inspect(changeset) ## log error
     conn
-    |> put_status(:not_found)
-    |> put_view(UrlShortenerWeb.ErrorView)
-    |> render(:"404")
+    |> put_status(
+      if changeset.action in [:insert, :update] do
+        400
+      else
+        404
+      end
+    )
+    |> render(UrlShortenerWeb.ApiErrors,
+    if changeset.action in [:insert, :update] do
+      "400.json"
+    else
+      "404.json"
+    end,
+    %{message:
+      if changeset.action in [:insert, :update] do
+        "Bad Request"
+      else
+        "Not Found"
+      end
+    })
   end
 end

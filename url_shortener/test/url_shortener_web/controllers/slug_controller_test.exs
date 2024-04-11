@@ -37,7 +37,7 @@ defmodule UrlShortenerWeb.SlugControllerTest do
       conn = post(conn, Routes.slug_path(conn, :create), slug: @create_attrs)
       assert %{"id" => id} = json_response(conn, 201)["data"]
 
-      conn = get(conn, Routes.slug_path(conn, :show, id))
+      conn = get(conn, Routes.slug_path(conn, id))
 
       assert %{
                "id" => id,
@@ -60,7 +60,7 @@ defmodule UrlShortenerWeb.SlugControllerTest do
       conn = put(conn, Routes.slug_path(conn, :update, slug), slug: @update_attrs)
       assert %{"id" => ^id} = json_response(conn, 200)["data"]
 
-      conn = get(conn, Routes.slug_path(conn, :show, id))
+      conn = get(conn, Routes.slug_path(conn id))
 
       assert %{
                "id" => id,
@@ -84,7 +84,7 @@ defmodule UrlShortenerWeb.SlugControllerTest do
       assert response(conn, 204)
 
       assert_error_sent 404, fn ->
-        get(conn, Routes.slug_path(conn, :show, slug))
+        get(conn, Routes.slug_path(conn, slug))
       end
     end
   end
