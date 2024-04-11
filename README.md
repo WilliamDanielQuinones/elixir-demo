@@ -2,6 +2,12 @@
 
 Demo Elixir application for STORD
 
+![main page] (https://i.imgur.com/gtDv5cz.png)
+
+![shortened url] (https://i.imgur.com/GZ8XsIB.png)
+
+![stats page] (https://i.imgur.com/RJFpbaA.png)
+
 ## Local Development
 
 ### Frontend
