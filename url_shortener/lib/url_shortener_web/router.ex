@@ -8,6 +8,7 @@ defmodule UrlShortenerWeb.Router do
   scope "/api", UrlShortenerWeb do
     pipe_through :api
     get "/slugs", SlugController, :index
+    get "/slugs/export", SlugController, :export
     get "/slugs/:slug", SlugController, :show_by_slug
     post "/slugs", SlugController, :create
     put "/slugs/:id", SlugController, :update

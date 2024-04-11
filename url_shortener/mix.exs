@@ -43,6 +43,7 @@ defmodule UrlShortener.MixProject do
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
       {:cors_plug, "~> 3.0"},
+      {:csv, "~> 3.2.1"}
     ]
   end
 

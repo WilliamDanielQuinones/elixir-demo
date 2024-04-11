@@ -1,6 +1,7 @@
 defmodule UrlShortenerWeb.SlugController do
   use UrlShortenerWeb, :controller
 
+  alias ElixirSense.Core.Struct
   alias UrlShortener.Api
   alias UrlShortener.Api.Slug
 
@@ -61,5 +62,19 @@ defmodule UrlShortenerWeb.SlugController do
     with {:ok, %Slug{}} <- Api.delete_slug(slug) do
       send_resp(conn, :no_content, "")
     end
+  end
+
+  def export(conn, _params) do
+    conn
+    |> put_resp_content_type("text/csv")
+    |> put_resp_header("content-disposition", "attachment; filename=\"slug-export.csv\"")
+    |> send_resp(200, csv_content())
+  end
+
+  defp csv_content do
+    _slugs = Api.list_slugs()
+    |> CSV.encode(headers: [:id, :url, :slug, :visited])
+    |> Enum.to_list
+    |> to_string
   end
 end

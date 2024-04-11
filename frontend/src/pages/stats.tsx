@@ -1,5 +1,15 @@
-import { Center, Container, Loader, Table } from "@mantine/core"
-import { slugHooks } from "features/slugs"
+import {
+  Button,
+  Center,
+  Container,
+  Group,
+  Loader,
+  Stack,
+  Table,
+  Title,
+} from "@mantine/core"
+import { IconDownload } from "@tabler/icons-react"
+import { slugHooks, slugsApi } from "features/slugs"
 
 export function StatsPage() {
   const { data: elements, isLoading } = slugHooks.useSlugs({})
@@ -22,22 +32,33 @@ export function StatsPage() {
   ))
 
   async function downloadCsv() {
-    console.log("hi")
+    await slugsApi.export()
   }
 
   return (
     <Container w={"90%"}>
-      <Table>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>Id</Table.Th>
-            <Table.Th>Url</Table.Th>
-            <Table.Th>Slug</Table.Th>
-            <Table.Th>Times Visited</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>{rows}</Table.Tbody>
-      </Table>
+      <Stack>
+        <Group justify={"space-between"}>
+          <Title order={1}>Stats</Title>
+          <Button onClick={downloadCsv}>
+            <Group>
+              <IconDownload />
+              Download CSV
+            </Group>
+          </Button>
+        </Group>
+        <Table>
+          <Table.Thead>
+            <Table.Tr>
+              <Table.Th>Id</Table.Th>
+              <Table.Th>Url</Table.Th>
+              <Table.Th>Slug</Table.Th>
+              <Table.Th>Times Visited</Table.Th>
+            </Table.Tr>
+          </Table.Thead>
+          <Table.Tbody>{rows}</Table.Tbody>
+        </Table>
+      </Stack>
     </Container>
   )
 }

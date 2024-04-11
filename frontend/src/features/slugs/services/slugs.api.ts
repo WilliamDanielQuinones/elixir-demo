@@ -44,6 +44,21 @@ class SlugsApiSingleTon {
       return undefined
     }
   }
+
+  async export() {
+    try {
+      const response = await axios.get("http://localhost:8080/api/slugs/export")
+      const url = window.URL.createObjectURL(new Blob([response.data]))
+      const link = document.createElement("a")
+      link.href = url
+      link.setAttribute("download", "slug-export.csv")
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+    } catch (error) {
+      console.log("error exporting slugs", error)
+    }
+  }
 }
 
 export const slugsApi = new SlugsApiSingleTon()
