@@ -14,7 +14,7 @@ Demo Elixir application for STORD
 
 Requirements:
 
--- Node.js (https://nodejs.org/en/download)
+- Node.js (https://nodejs.org/en/download)
 
 Setup instructions:
 
