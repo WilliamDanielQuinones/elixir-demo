@@ -22,7 +22,6 @@ defmodule UrlShortenerWeb do
       use Phoenix.Controller, namespace: UrlShortenerWeb
 
       import Plug.Conn
-      import UrlShortenerWeb.Gettext
       alias UrlShortenerWeb.Router.Helpers, as: Routes
     end
   end
@@ -54,7 +53,6 @@ defmodule UrlShortenerWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import UrlShortenerWeb.Gettext
     end
   end
 
@@ -64,7 +62,6 @@ defmodule UrlShortenerWeb do
       import Phoenix.View
 
       import UrlShortenerWeb.ErrorHelpers
-      import UrlShortenerWeb.Gettext
       alias UrlShortenerWeb.Router.Helpers, as: Routes
     end
   end

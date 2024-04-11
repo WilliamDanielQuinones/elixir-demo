@@ -7,6 +7,10 @@ defmodule UrlShortenerWeb.Router do
 
   scope "/api", UrlShortenerWeb do
     pipe_through :api
+    get "/slugs", SlugController, :index
+    # put "/slugs", SlugController, :edit # No need for edit endpoint
+    post "/slugs", SlugController, :create
+    # delete "/slugs", SlugController, :delete # No need for delete endpoint
   end
 
   # Enables LiveDashboard only for development
