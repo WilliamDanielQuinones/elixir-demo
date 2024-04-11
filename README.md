@@ -2,11 +2,11 @@
 
 Demo Elixir application for STORD
 
-![home] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/home.png)
+![home](https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/home.png)
 
-![shortened] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/shortened.png)
+![shortened](https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/shortened.png)
 
-![stats] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/stats.png)
+![stats](https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/stats.png)
 
 ## Local Development
 
