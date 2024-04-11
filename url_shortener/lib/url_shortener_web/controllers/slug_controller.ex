@@ -42,6 +42,11 @@ defmodule UrlShortenerWeb.SlugController do
     render(conn, "show.json", slug: slug)
   end
 
+  def show_by_slug(conn, %{"slug" => slug}) do
+    slug = Api.get_slug_by_slug!(slug)
+    render(conn, "show.json", slug: slug)
+  end
+
   def update(conn, %{"id" => id, "slug" => slug_params}) do
     slug = Api.get_slug!(id)
 

@@ -38,20 +38,36 @@ defmodule UrlShortener.Api do
   def get_slug!(id), do: Repo.get!(Slug, id)
 
   @doc """
-  Gets a single slug by url.
+  Gets a single slug by slug.
 
   Raises `Ecto.NoResultsError` if the Slug does not exist.
 
   ## Examples
 
-      iex> get_slug!(123)
+      iex> get_slug_by_url!("https://google.com")
       %Slug{}
 
-      iex> get_slug!(456)
+      iex> get_slug_by_url!("abcde12345_not_a_url")
       ** (Ecto.NoResultsError)
 
   """
   def get_slug_by_url!(url), do: Repo.one(from(s in Slug, where: s.url == ^url))
+
+  @doc """
+  Gets a single slug by slug.
+
+  Raises `Ecto.NoResultsError` if the Slug does not exist.
+
+  ## Examples
+
+      iex> get_slug_by_slug!("https://google.com")
+      %Slug{}
+
+      iex> get_slug_by_slug!("abcde12345_not_a_url")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_slug_by_slug!(slug), do: Repo.one(from(s in Slug, where: s.slug == ^slug))
 
   @doc """
   Creates a slug.

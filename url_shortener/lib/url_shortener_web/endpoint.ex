@@ -1,6 +1,6 @@
 defmodule UrlShortenerWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :url_shortener
-  plug CORSPlug, origin: "http://localhost:3000"
+  plug CORSPlug, origin: "http://localhost:3000", methods: ~w(POST GET PUT)
 
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
