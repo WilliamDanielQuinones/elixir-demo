@@ -1,11 +1,17 @@
 import { ActionIcon, Group, Image, Text, Tooltip } from "@mantine/core"
 import Logo from "assets/logo.png"
-import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react"
+import {
+  IconBrandGithub,
+  IconBrandLinkedin,
+  IconGraph,
+} from "@tabler/icons-react"
 
 import "@mantine/core/styles.css"
 import { COLORS } from "settings/app"
+import { useNavigate } from "react-router-dom"
 
 export function AppHeader() {
+  const navigate = useNavigate()
   return (
     <Group
       pl={32}
@@ -21,7 +27,14 @@ export function AppHeader() {
       }}
       justify="space-between"
     >
-      <Group>
+      <Group
+        styles={{
+          root: {
+            cursor: "pointer",
+          },
+        }}
+        onClick={() => navigate("/")}
+      >
         <Image
           src={Logo}
           alt="demo logo"
@@ -35,6 +48,16 @@ export function AppHeader() {
         </Text>
       </Group>
       <Group>
+        <Tooltip label="Stats Page" position="bottom">
+          <ActionIcon
+            variant="filled"
+            aria-label="github"
+            size={"lg"}
+            onClick={() => navigate("/stats")}
+          >
+            <IconGraph stroke={1.5} />
+          </ActionIcon>
+        </Tooltip>
         <Tooltip label="Github" position="bottom">
           <ActionIcon
             variant="filled"
@@ -50,7 +73,7 @@ export function AppHeader() {
         <Tooltip label="LinkedIn" position="bottom">
           <ActionIcon
             variant="filled"
-            aria-label="github"
+            aria-label="linkedIn"
             size={"lg"}
             onClick={() =>
               window.open(

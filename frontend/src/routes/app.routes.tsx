@@ -1,5 +1,5 @@
 import { AppWrapper } from "layouts"
-import { UrlShortenerPage } from "pages"
+import { RedirectPage, StatsPage, UrlShortenerPage } from "pages"
 import {
   Navigate,
   Outlet,
@@ -18,6 +18,12 @@ export function AppRoutes() {
       >
         <Route path={"/"} element={<Outlet />}>
           <Route index element={<UrlShortenerPage />} />
+        </Route>
+        <Route path={"/stats"} element={<Outlet />}>
+          <Route index element={<StatsPage />} />
+        </Route>
+        <Route path={"/:slug"} element={<Outlet />}>
+          <Route index element={<RedirectPage />} />
         </Route>
         <Route index element={<Navigate to={"/"} />} />
         <Route path={"*"} element={<Navigate to={"/"} />} />
