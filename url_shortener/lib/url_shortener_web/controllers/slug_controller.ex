@@ -1,7 +1,6 @@
 defmodule UrlShortenerWeb.SlugController do
   use UrlShortenerWeb, :controller
 
-  alias ElixirSense.Core.Struct
   alias UrlShortener.Api
   alias UrlShortener.Api.Slug
 
@@ -12,10 +11,9 @@ defmodule UrlShortenerWeb.SlugController do
     render(conn, "index.json", slugs: slugs)
   end
 
-  # Validate the URL and create a new slug. If url already exists, return that slug
   def create(conn, %{"slug" => slug_params}) do
+    # Validate the URL and check if URL already exists. If url already exists, return that slug, othewise create and return new slug.
     {isValid, _validMessage} = UrlShortener.Utils.UrlValidator.valid_url(slug_params["url"])
-    IO.inspect(isValid)
     if isValid == :ok do
       exists = Api.get_slug_by_url!(slug_params["url"])
       if exists == :nil do
@@ -67,7 +65,6 @@ defmodule UrlShortenerWeb.SlugController do
   def export(conn, _params) do
     conn
     |> put_resp_content_type("text/csv")
-    |> put_resp_header("content-disposition", "attachment; filename=\"slug-export.csv\"")
     |> send_resp(200, csv_content())
   end
 

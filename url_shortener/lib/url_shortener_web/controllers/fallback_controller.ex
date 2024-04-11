@@ -1,6 +1,7 @@
 defmodule UrlShortenerWeb.FallbackController do
   use UrlShortenerWeb, :controller
 
+  # Generic error handler for all routes
   def call(conn, {:error, %Ecto.Changeset{} = changeset}) do
     IO.inspect(changeset) ## log error
     conn
