@@ -2,11 +2,11 @@
 
 Demo Elixir application for STORD
 
-![main page] (https://i.imgur.com/gtDv5cz.png)
+![home] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/home.png)
 
-![shortened url] (https://i.imgur.com/GZ8XsIB.png)
+![shortened] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/shortened.png)
 
-![stats page] (https://i.imgur.com/RJFpbaA.png)
+![stats] (https://raw.githubusercontent.com/WilliamDanielQuinones/elixir-demo/main/assets/stats.png)
 
 ## Local Development
 
@@ -14,13 +14,15 @@ Demo Elixir application for STORD
 
 Requirements:
 
-- Node.js (https://nodejs.org/en/download)
+-- Node.js (https://nodejs.org/en/download)
 
 Setup instructions:
+
 In your terminal: `cd` into the `/frontend` directory and run the following commands:
 -- `npm install`
 
 Run application:
+
 In your terminal: `cd` into the `/frontend` directory and run the following command:
 -- `npm start`
 The application UI will be running on http://localhost:3000
@@ -29,12 +31,13 @@ The application UI will be running on http://localhost:3000
 
 Requirements:
 
-- Docker (https://www.docker.com/products/docker-desktop/)
-- Erlang (https://hexdocs.pm/elixir/introduction.html)
-- Elixir (https://hexdocs.pm/elixir/introduction.html)
-- Pheonix (https://hexdocs.pm/phoenix/installation.html)
+-- Docker (https://www.docker.com/products/docker-desktop/)
+-- Erlang (https://hexdocs.pm/elixir/introduction.html)
+-- Elixir (https://hexdocs.pm/elixir/introduction.html)
+-- Pheonix (https://hexdocs.pm/phoenix/installation.html)
 
 Setup instructions:
+
 In your terminal: `cd` into the `/url_shortener` directory and run the following commands:
 -- `docker-compose up -d` (Setup local postgres db)
 -- Alternatively: `docker-compose -p url-shortener-db up -d` (This will setup your docker container with that specific name to not overwrite other postgres docker containers)
@@ -44,11 +47,13 @@ In your terminal: `cd` into the `/url_shortener` directory and run the following
 -- `mix ecto.migrate`
 
 Run application:
+
 In your terminal: `cd` into the `/url_shortener` directory and run the following command:
 -- `mix phx.server`
 The application backend will be running on http://localhost:8080
 
 Run unit tests:
+
 Make sure that the docker container from the setup instuctions is running.
 In your terminal: `cd` into the `/url_shortener` directory and run the following command:
 -- `mix test`
